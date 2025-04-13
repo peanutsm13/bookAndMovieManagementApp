@@ -1,25 +1,33 @@
-// src/components/SearchTabs.tsx
+import React from "react";
+
 type Props = {
-  activeTab: "movie" | "book";
-  onChange: (tab: "movie" | "book") => void;
+  currentTab: "movie" | "book";
+  onTabChange: (tab: "movie" | "book") => void;
 };
 
-export default function SearchTabs({ activeTab, onChange }: Props) {
+export default function SearchTabs({ currentTab, onTabChange }: Props) {
   return (
-    <div className="flex mb-4 border-b">
-      {["movie", "book"].map((tab) => (
-        <button
-          key={tab}
-          onClick={() => onChange(tab as "movie" | "book")}
-          className={`flex-1 py-2 px-4 text-center ${
-            activeTab === tab
-              ? "border-b-2 border-blue-500 font-bold"
-              : "text-gray-500"
-          }`}
-        >
-          {tab === "movie" ? "映画" : "書籍"}
-        </button>
-      ))}
+    <div className="flex justify-center mb-6 space-x-2">
+      <button
+        className={`px-6 py-2 rounded-t-xl font-bold transition ${
+          currentTab === "movie"
+            ? "bg-white text-blue-600 shadow"
+            : "bg-gray-200 text-gray-600"
+        }`}
+        onClick={() => onTabChange("movie")}
+      >
+        🎬 映画
+      </button>
+      <button
+        className={`px-6 py-2 rounded-t-xl font-bold transition ${
+          currentTab === "book"
+            ? "bg-white text-blue-600 shadow"
+            : "bg-gray-200 text-gray-600"
+        }`}
+        onClick={() => onTabChange("book")}
+      >
+        📚 本
+      </button>
     </div>
   );
 }
