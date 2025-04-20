@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/styles.css";
 
 type MovieCardProps = {
   title: string;
@@ -7,9 +8,9 @@ type MovieCardProps = {
 
 export const MovieCard: React.FC<MovieCardProps> = ({ title, genre }) => {
   return (
-    <div className="border p-4 mb-2 rounded-lg shadow-md">
-      <h3 className="text-xl font-bold">{title}</h3>
-      <p className="text-gray-500">{genre}</p>
+    <div className="card">
+      <h3 className="card-title">{title}</h3>
+      <p className="card-genre">{genre}</p>
     </div>
   );
 };

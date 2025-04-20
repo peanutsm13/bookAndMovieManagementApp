@@ -10,7 +10,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const a = "mypage";
+
   const apiKey = "e8bdbf27";
 
   const handleSearch = async () => {
@@ -78,16 +78,16 @@ export default function Home() {
 
       {tab !== "mypage" && (
         <div className="search-bar">
-          <div style={{ flex: 1 }}>
+          <div className="search-container" style={{ flex: 1 }}>
             <SearchInput
               query={query}
               onQueryChange={setQuery}
               placeholder={tab === "movie" ? "映画を検索..." : "本を検索..."}
             />
+            <button onClick={handleSearch} className="search-button">
+              検索
+            </button>
           </div>
-          <button onClick={handleSearch} className="search-button">
-            検索
-          </button>
         </div>
       )}
 
