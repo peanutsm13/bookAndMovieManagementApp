@@ -6,4 +6,9 @@ export default defineConfig({
   server: {
     port: 3000, // 好きなポート番号でOK（任意）
   },
+  build: {
+    rollupOptions: {
+      input: "./src/index.tsx",
+    },
+  },
 });

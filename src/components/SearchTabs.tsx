@@ -1,32 +1,32 @@
 import React from "react";
+import "../css/SearchTabs.css"; // ここでCSSをインポート
 
+type TabType = "movie" | "book" | "mypage";
 type Props = {
-  currentTab: "movie" | "book";
-  onTabChange: (tab: "movie" | "book") => void;
+  currentTab: TabType;
+  onTabChange: (tab: TabType) => void;
 };
 
 export default function SearchTabs({ currentTab, onTabChange }: Props) {
   return (
-    <div className="flex justify-center mb-6 space-x-2">
+    <div className="tabs-container">
       <button
-        className={`px-6 py-2 rounded-t-xl font-bold transition ${
-          currentTab === "movie"
-            ? "bg-white text-blue-600 shadow"
-            : "bg-gray-200 text-gray-600"
-        }`}
+        className={`tab-button ${currentTab === "movie" ? "active" : ""}`}
         onClick={() => onTabChange("movie")}
       >
         🎬 映画
       </button>
       <button
-        className={`px-6 py-2 rounded-t-xl font-bold transition ${
-          currentTab === "book"
-            ? "bg-white text-blue-600 shadow"
-            : "bg-gray-200 text-gray-600"
-        }`}
+        className={`tab-button ${currentTab === "book" ? "active" : ""}`}
         onClick={() => onTabChange("book")}
       >
         📚 本
+      </button>
+      <button
+        className={`tab-button ${currentTab === "mypage" ? "active" : ""}`}
+        onClick={() => onTabChange("mypage")}
+      >
+        🏠 マイページ
       </button>
     </div>
   );

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AddMovie from "./pages/AddMovie";
 import AddBook from "./pages/AddBook";
+import MyPage from "./pages/MyPage";
 import SearchInput from "./components/SearchInput";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/add-movie" element={<AddMovie />} />
         <Route path="/add-book" element={<AddBook />} />
+        <Route path="/my-page" element={<MyPage />} />
         <Route
           path="/search"
           element={

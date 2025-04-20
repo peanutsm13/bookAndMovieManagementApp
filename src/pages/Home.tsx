@@ -2,12 +2,15 @@ import { useState } from "react";
 import SearchTabs from "../components/SearchTabs";
 import SearchInput from "../components/SearchInput";
 import ResultList from "../components/ResultList";
+import MyPage from "./MyPage";
+import "../css/styles.css";
 
 export default function Home() {
-  const [tab, setTab] = useState<"movie" | "book">("movie");
+  const [tab, setTab] = useState<"movie" | "book" | "mypage">("movie");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const a = "mypage";
   const apiKey = "e8bdbf27";
 
   const handleSearch = async () => {
@@ -68,26 +71,33 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-2xl font-bold mb-4">映画・書籍管理アプリ</h1>
+    <div className="home-container">
+      <h1 className="title">映画・書籍管理アプリ</h1>
 
       <SearchTabs currentTab={tab} onTabChange={setTab} />
-      <div className="flex items-center gap-2 mb-4">
-        <div className="flex-1">
-          <SearchInput
-            query={query}
-            onQueryChange={setQuery}
-            placeholder={tab === "movie" ? "映画を検索..." : "本を検索..."}
-          />
+
+      {tab !== "mypage" && (
+        <div className="search-bar">
+          <div style={{ flex: 1 }}>
+            <SearchInput
+              query={query}
+              onQueryChange={setQuery}
+              placeholder={tab === "movie" ? "映画を検索..." : "本を検索..."}
+            />
+          </div>
+          <button onClick={handleSearch} className="search-button">
+            検索
+          </button>
         </div>
-        <button
-          onClick={handleSearch}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          検索
-        </button>
-      </div>
-      {loading ? <p>検索中...</p> : <ResultList results={results} />}
+      )}
+
+      {loading ? (
+        <p>検索中...</p>
+      ) : tab === "mypage" ? (
+        <MyPage />
+      ) : (
+        <ResultList results={results} />
+      )}
     </div>
   );
 }
